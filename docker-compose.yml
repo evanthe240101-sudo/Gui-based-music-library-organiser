@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: music-library-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: music_library
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - music-network
+
+  backend:
+    build: ./backend
+    container_name: music-library-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/music_library?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+    volumes:
+      - ./uploads:/app/uploads
+    networks:
+      - music-network
+
+  frontend:
+    build: ./frontend
+    container_name: music-library-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - music-network
+
+volumes:
+  mysql_data:
+
+networks:
+  music-network:
+    driver: bridge
