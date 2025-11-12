@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎶 Music Library Organizer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="logo">
+                <h1>🎶 MusicLib</h1>
+                <p>Your Grand Music Experience</p>
+            </div>
+            
+            <form id="loginForm" class="form">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <span class="input-icon">👤</span>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <span class="input-icon">🔒</span>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <span>Login</span>
+                    <div class="btn-animation"></div>
+                </button>
+            </form>
+            
+            <div class="divider">
+                <span>or</span>
+            </div>
+            
+            <button class="btn-secondary" onclick="window.location.href='signup.html'">
+                Create New Account
+            </button>
+            
+            <div class="music-notes">
+                <div class="note">♪</div>
+                <div class="note">♫</div>
+                <div class="note">♪</div>
+                <div class="note">♬</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+</body>
+</html>

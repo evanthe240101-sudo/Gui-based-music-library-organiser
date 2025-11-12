@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎶 Dashboard - Music Library</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>🎶 MusicLib</h2>
+        </div>
+        <div class="nav-search">
+            <input type="text" id="searchInput" placeholder="Search songs, artists, albums...">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="nav-user">
+            <span id="userName">Welcome!</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" data-page="home">🏠 Home</a></li>
+                <li><a href="#" data-page="upload">⬆️ Upload</a></li>
+                <li><a href="#" data-page="playlists">📋 Playlists</a></li>
+                <li><a href="#" data-page="favorites">❤️ Favorites</a></li>
+                <li><a href="#" data-page="player">🎵 Player</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div id="homePage" class="page active">
+                <section class="hero">
+                    <h1>Your Music Universe</h1>
+                    <p>Discover, organize, and enjoy your favorite tunes</p>
+                </section>
+
+                <section class="music-grid">
+                    <h2>Recent Songs</h2>
+                    <div id="songsContainer" class="songs-grid">
+                        <!-- Songs will be loaded here -->
+                    </div>
+                </section>
+
+                <section class="playlists-preview">
+                    <h2>Your Playlists</h2>
+                    <div id="playlistsContainer" class="playlists-grid">
+                        <!-- Playlists will be loaded here -->
+                    </div>
+                </section>
+            </div>
+
+            <div id="uploadPage" class="page">
+                <h1>Upload New Song</h1>
+                <form id="uploadForm" class="upload-form">
+                    <div class="file-upload">
+                        <input type="file" id="audioFile" accept="audio/*" required>
+                        <label for="audioFile">Choose Audio File</label>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <input type="text" id="songTitle" placeholder="Song Title" required>
+                        <input type="text" id="artist" placeholder="Artist" required>
+                        <input type="text" id="album" placeholder="Album">
+                        <input type="text" id="genre" placeholder="Genre">
+                    </div>
+                    
+                    <button type="submit" class="btn-upload">Upload Song</button>
+                </form>
+            </div>
+
+            <div id="playlistsPage" class="page">
+                <div class="playlists-header">
+                    <h1>My Playlists</h1>
+                    <button id="createPlaylistBtn" class="btn-create">+ Create Playlist</button>
+                </div>
+                <div id="allPlaylistsContainer" class="playlists-container">
+                    <!-- All playlists will be loaded here -->
+                </div>
+            </div>
+
+            <div id="playerPage" class="page">
+                <div class="player-container">
+                    <div class="album-art">
+                        <div class="vinyl-record">
+                            <div class="vinyl-center"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-info">
+                        <h2 id="currentSong">No song selected</h2>
+                        <p id="currentArtist">Unknown Artist</p>
+                    </div>
+                    
+                    <div class="player-controls">
+                        <button id="prevBtn">⏮️</button>
+                        <button id="playPauseBtn">▶️</button>
+                        <button id="nextBtn">⏭️</button>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <span id="currentTime">0:00</span>
+                        <div class="progress-bar">
+                            <div id="progress"></div>
+                        </div>
+                        <span id="duration">0:00</span>
+                    </div>
+                    
+                    <div class="volume-container">
+                        <span>🔊</span>
+                        <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                    </div>
+                    
+                    <canvas id="visualizer" width="800" height="200"></canvas>
+                </div>
+                
+                <audio id="audioPlayer" preload="metadata"></audio>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/visualizer.js"></script>
+</body>
+</html>
